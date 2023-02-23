@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "math": "^0.0.3",
+    "prompt-sync": "^4.2.0",
+    "stack": "^0.1.0"
+  }
+}
