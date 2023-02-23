@@ -1,12 +1,17 @@
 let prompt = require("prompt-sync")()
 console.log("**********************{ Welcome to Apna Bank app }***********************")
+
+
 console.log("Press 1 to register new user:");
 console.log("Press 2 to deposit money:"); 
 console.log("Press 3 to withdraw money: ");
+console.log("Press 4 to take load for car, home and education : ");
 console.log("Press 0 to Exit")
-var a = 0;
 let x = prompt("=> ");
 
+// ---------------------------------------------------------Register-------------------------------------------
+ 
+while(x!==0){
 function userDetails(){
 let name = prompt("Enter your full name: ");
 var fullName = /^[a-z,',-]+(\s)[a-z,',-]+$/;
@@ -38,13 +43,18 @@ if(!pincode.match(validPin)){
   console.log("Enter your valid area Pincode: ")
 }
 }
+
+// -----------------------------------------------------------------Deposit-------------------------------------
+var a = 0 ;
 function deposit(){   
     let b = prompt("Enter amount for deposit: ");
-    a = a+b;
-    console.log("Balance",a);
+    a = a + b;
+    console.log("Balance: ", a);
 }
+
+//-------------------------------------------------------------------withdraw-------------------------------------
 function withdraw(){     
-     if(a!==0){
+     if(!a==0){
      let c = prompt("Enter amount for withdraw: ");
         a = a - c;
      console.log("Balance: ", a );
@@ -53,6 +63,15 @@ function withdraw(){
       console.log("insufficient balance: ");
      }    
     }
+// -------------------------------------------------------------------load---------------------------------------    
+function carLoan(){
+ let amount = prompt("Enter amount you want to take: ");
+ let months = prompt("For much duration of months: ");
+ let interest = 14;
+ let total = ((amount/months) + interest);
+ console.log("Total loan: ",total);
+}
+
 switch (x) {
   case '0':
     break;
@@ -61,12 +80,15 @@ switch (x) {
     break;
   case '2':
     deposit();
-    break; 
+    break;
   case '3':
     withdraw();
+  break;
+  case '4':
+    carLoan();
   break;
   default:
     console.log("Invalid button! Thanks for using Apna Bank app");
 }
-
+}
 
