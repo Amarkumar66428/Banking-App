@@ -14,19 +14,14 @@ var years;
 var monthlyInterestRate;
 var months;
 var monthlyPayment; 
+
+function getAccNumber() {
+  return Math.floor(Math.random() * 10);
+  }
+
+const accountNo = getAccNumber();
  
-
-console.log("Press 1 to create new Account:");
-console.log("Press 2 to deposit money:"); 
-console.log("Press 3 to withdraw money: ");
-console.log("Press 4 to take load for car, home and education : ");
-console.log("Press 5 to pay Emi : ");
-console.log("Press 6 to ")
-console.log("Press 0 to Exit")
-choice = prompt("=> ");
-
-// ---------------------------------------------------------Register-------------------------------------------
-
+// ---------------------------------------------------------Creating new account-------------------------------------------
 
 function userDetails(){
 
@@ -64,6 +59,7 @@ function userAcc(){
 
   console.log("<===================={  User Details  }==================>")
   console.log("Name:            ",name);
+  console.log("your Account no  ",accountNo);
   console.log("Email id:        ",id);
   console.log("Phone:           ",phone);
   console.log("Address:         ",address);
@@ -73,10 +69,18 @@ function userAcc(){
 
 
 // -----------------------------------------------------------------Deposit-------------------------------------
-function deposit(){   
+function deposit(){ 
+
+    let Acc = prompt("Enter Account number: ");
+    if(Acc==accountNo){ 
     let b = parseFloat(prompt("Enter amount for deposit: "));
     Bank_bal = Bank_bal + b;
     console.log("Balance: ", Bank_bal);
+  }
+  else{
+    console.log("You have enter wrong input")
+  }
+
 }
 
 //-------------------------------------------------------------------withdraw-------------------------------------
@@ -109,22 +113,29 @@ function payEmi(){
     console.log("Insufficient Balance! ");
   }
   else{
-  console.log(months-1);
-  console.log(Bank_bal-monthlyPayment);
+    months--;
+    Bank_bal = Bank_bal - monthlyPayment;
+  console.log("=> Your Emi is paid successfully ");
 }
 }
-function loanDetail(){
 
+function loanDetail(){
 console.log("Total months left:",months);
 console.log("Monthly Emi: ",monthlyPayment);
 }
-function handleInput() {
+
+console.log("Press 1 to create new Account:");
+console.log("Press 2 to deposit money:"); 
+console.log("Press 3 to withdraw money:");
+console.log("Press 4 to take load for car, home and education :");
+console.log("Press 5 to pay Emi :");
+console.log("Press 6 to See Acount details:")
+console.log("Press 0 to Exit")
+
+do{
+  choice = prompt("Enter your choice (0 to Exit)=> ");
 switch (choice)
  {
-  case '0':
-    console.log('Exiting program.');
-    break;
-
   case '1': 
     userDetails();
     userAcc();
@@ -136,6 +147,8 @@ switch (choice)
 
   case '3':
     withdraw();
+    break;
+
   case '4':
     Loan();
   break;
@@ -148,19 +161,9 @@ switch (choice)
     userAcc();
     loanDetail(); 
   break;
-
-    default:
-      console.log('Invalid input');
-      break;
   }
-}
-// var Bank = handleInput();
-  
-if (choice !== '0') {
-  choice =  prompt('Enter a number (0 to exit): ');
-  handleInput();
-  }
-  // prompt('Enter a number (0 to exit): ', Bank);
+}while (choice !== '0');
+console.log("<~~~~~~~~~~~~~~~~~~~~~~~{ Thank you for kind visit to World bank }~~~~~~~~~~~~~~~~~~~~~~>")
 
 
 
