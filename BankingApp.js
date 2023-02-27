@@ -1,58 +1,53 @@
 let prompt = require("prompt-sync")()
 console.log("<**********************{ Welcome to Apna Bank app }***********************>")
 
-
-
 let choice;
-let name;
-let id;
-let phone;
-let address;
-let pincode;
-let Bank_bal = 0;
-let currentBal;
-let amount;
-var interestRate;
-var month;
-var monthlyInterestRate;
+  let name;
+    let id;
+      let phone;
+        let address;
+          let pincode;
+            let Bank_bal = 0;
+          let currentBal;
+        let amount;
+      var interestRate;
+    var month;
+  var monthlyInterestRate;
 var monthlyPayment; 
 
- 
 // ---------------------------------------------------------Creating new account-------------------------------------------
 
 function userDetails(){
   Bank_bal = 0;
 
 var fullName = /^[a-z,',-]+(\s)[a-z,',-]+$/;
-name = prompt("Enter your full name:             ");
-
-if (!name.match(fullName)){
-   console.log("Please enter your First and last name");
-}
-
+   name = prompt("Enter your full name:             ");
+      if (!name.match(fullName)){
+        console.log("Please enter your First and last name");
+      }
 
 id = prompt("Enter your email id:              ")
 var validId = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(!id.match(validId)){
-   console.log("Invalid Email");
-}
+    if(!id.match(validId)){
+      console.log("Invalid Email");
+    }
 
 phone = prompt("Enter your phone number:          ");
 var validPh = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-if(!phone.match(validPh)){
-  console.log("Your entered phone number is invalid ")
+    if(!phone.match(validPh)){
+      console.log("Your entered phone number is invalid ")
 }
 
 address = prompt("Enter your address:               ");
-var validAd = /^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/;
-if(!address.match(validAd)){
-  console.log("Enter your valid address: ")
-}
+  var validAd = /^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/;
+    if(!address.match(validAd)){
+      console.log("Enter your valid address: ")
+    }
 
 pincode = prompt("Enter your area pincode:          ");
 var validPin = /^[0-9]{6}?$/;
-if(!pincode.match(validPin)){
-  console.log("Enter your valid area Pincode: ")
+    if(!pincode.match(validPin)){
+      console.log("Enter your valid area Pincode: ")
 }
 
 // ------------------------------------------------------creating Account number---------------------------------------
@@ -60,59 +55,43 @@ if(!pincode.match(validPin)){
 
 function generateAccountNumber() {
   let accountNumber = '';
-  for (let i = 0; i < 8; i++) {
-    accountNumber += parseFloat(Math.floor(Math.random() * 10));
-  }
+    for (let i = 0; i < 8; i++) {
+      accountNumber += parseFloat(Math.floor(Math.random() * 10));
+    }
   return accountNumber;
 }
 
 const accountNumber = generateAccountNumber();
 const accountNo = accountNumber;
 
-
-
-function userAcc(){
-
-  console.log("<===================={  User Details  }==================>")
-  console.log("Name:            ",name);
-  console.log("your Account no  ",accountNo);
-  console.log("Email id:        ",id);
-  console.log("Phone:           ",phone);
-  console.log("Address:         ",address);
-  console.log("Pincode:         ",pincode);
-  }
-
-
 // -----------------------------------------------------------------Deposit-------------------------------------
 function deposit(){ 
-
-    let Acc = prompt("Enter Account number: ");
+let Acc = prompt("Enter Account number: ");
     if(Acc==accountNo){ 
-    let b = parseFloat(prompt("Enter amount for deposit: "));
-    Bank_bal = Bank_bal + b;
-    console.log("--< Amount is added to your account >--")
-    console.log("Current balance: ", Bank_bal);
-  }
-  else{
+      let b = parseFloat(prompt("Enter amount for deposit: "));
+      Bank_bal = Bank_bal + b;
+        console.log("--< Amount is added to your account >--")
+        console.log("Current balance: ", Bank_bal);
+      }
+    else{
     console.log("You have enter wrong input")
-  }
-
+    }
 }
 
 //-------------------------------------------------------------------withdraw-------------------------------------
 function withdraw(){ 
   let Acc = prompt("Enter Account number: "); 
-  if(Acc==accountNo){   
-     if(Bank_bal>0){
-     let c = prompt("Enter amount for withdraw: ");
-     if(c<Bank_bal){
-     Bank_bal = Bank_bal - c;
-    console.log("Current Balance: ", Bank_bal);
-     }
-     else{
-      console.log("--------------insufficient balance")
-     }
-     }
+    if(Acc==accountNo){   
+      if(Bank_bal>0){
+      let c = prompt("Enter amount for withdraw: ");
+        if(c<Bank_bal){
+          Bank_bal = Bank_bal - c;
+          console.log("Current Balance: ", Bank_bal);
+        }
+      else{
+      console.log("<~~~~~~~~~~insufficient balance~~~~~~~~~~~>")
+        }
+      }
     }    
     else{
       console.log("You have enter wrong input");
@@ -123,100 +102,120 @@ function withdraw(){
 function Loan(){
   let Acc = prompt("Enter Account number: ");
   if(Acc==accountNo){
-  amount = parseFloat(prompt("loan Amount: "));
-  interestRate = 15;
-  month = parseFloat(prompt("Durration of months: "));
-  monthlyInterestRate = interestRate / 1500;
-  
-  monthlyPayment = (amount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -month));
-  
- console.log("Monthlyloan: ",monthlyPayment);
- console.log("Months: ",month);
- currentBal = Bank_bal + amount;
- console.log("Current balance: ",currentBal);
+    amount = parseFloat(prompt("loan Amount: "));
+      interestRate = 15;
+        month = parseFloat(prompt("Durration of months: "));
+         monthlyInterestRate = interestRate / 1500;
+          monthlyPayment = (amount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -month));
+        console.log("Monthlyloan: ",monthlyPayment);
+       console.log("Months: ",month);
+      currentBal = Bank_bal + amount;
+    console.log("Current balance: ",currentBal);
 
   }
   else{
     console.log("You have enter wrong input");
   }
 }
+
 function world(){
   console.log("current Balance:", Bank_bal);
 }
 
 function payEmi(){
   let Acc = prompt("Enter Account number: ");
-  if(Acc==accountNo){
-  if(Bank_bal<0){
-    console.log("Insufficient Balance! ");
-  }
-  else{
-    if(month<=0){
-      console.log("<------You have not any emi is panding")
-    }
-    month--;
-    currentBal = currentBal - monthlyPayment;
-  console.log("=> Your Emi is paid successfully ");
-}
-  }
-  else{
-    console.log("You have enter wrong input");
-  }
-}
+       if(Acc==accountNo){
+        if(Bank_bal<0){
+          console.log("Insufficient Balance! ");
+          }
+           else{}
+             month--;
+              currentBal = currentBal - monthlyPayment;
+              console.log("<~~~~~~{ EMI paid successfully }~~~~~>")
+            }
+        else{
+           console.log("You have enter wrong input");
+           }
+          }
 
 function currentbal(){
-  console.log("Current balance:",currentBal);
-}
+          console.log("Current balance:",currentBal);
+          }
 
 function loanDetail(){
-console.log("Total months left:",month);
-console.log("Monthly Emi: ",monthlyPayment);
-}
+          console.log("Total months left:",month);
+            console.log("Monthly Emi: ",monthlyPayment);
+          }
 
 console.log("Press 1 to create new Account:");
-console.log("Press 2 to deposit money:"); 
-console.log("Press 3 to withdraw money:");
-console.log("Press 4 to take load for car, home and education :");
-console.log("Press 5 to pay Emi :");
-console.log("Press 6 to See Acount details:")
+  console.log("Press 2 to deposit money:"); 
+    console.log("Press 3 to withdraw money:");
+      console.log("Press 4 to take load for car, home and education :");
+    console.log("Press 5 to pay Emi :");
+  console.log("Press 6 to See Acount details:")
 console.log("                              ");
 
+function userAcc(){
+  console.log("<=={  User Details  }==>")
+    console.log("Name:            ",name);
+      console.log("your Account no  ",accountNo);
+        console.log("Email id:        ",id);
+      console.log("Phone:           ",phone);
+    console.log("Address:         ",address);
+  console.log("Pincode:         ",pincode);
+  }
+
 do{
-  choice = prompt("Enter your choice (0 to Exit)=> ");
+      choice = prompt("Enter your choice (0 to Exit)=> ");
 switch (choice)
  {
   case '1': 
     userDetails();
-    userAcc();
+       console.log("                     ");
+            console.log("<~~~~~~~~~~~~~{ Account created! }~~~~~~~~~~~>");
+       console.log("                     ");
+      userAcc();
     world();
-    
     break;
 
   case '2':
-    deposit();
+        deposit();
     break;
 
   case '3':
-    withdraw();
+        withdraw();
     break;
 
   case '4':
-    Loan();
+      Loan();
   break;
 
   case '5':
-    payEmi ();  
-  break;
+    if(month<1 || monthlyPayment < 0){
+      console.log("<~~~~~~~~~~{ Not any pending EMI }~~~~~~~~~>")
+    }
+    else{
+      payEmi ();  
+    }  
+      break;
 
   case '6':
-    userAcc();
-    currentbal();
-    loanDetail(); 
+      userAcc();
+        
+        if(month<1 || monthlyPayment < 0){
+          console.log("<~~~~~~~~~~{ Don't have any EMI }~~~~~~~~~>")
+        }
+        else{
+          currentbal();
+          loanDetail();
+        } 
   break;
-  default:
-    console.log("Invalid input");
+  
+      default:
+        console.log("Invalid input");
   }
 }while (choice !== '0');
+
 console.log("<~~~~~~~~~~~~~~~~~~~~~~~{ Thank you for kind visit to World bank }~~~~~~~~~~~~~~~~~~~~~~>")
 
 
