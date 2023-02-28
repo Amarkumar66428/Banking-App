@@ -125,9 +125,10 @@ function world(){
 function payEmi(){
   let Acc = prompt("Enter Account number: ");
        if(Acc==accountNo){
-        if(Bank_bal<0){
-          console.log("Insufficient Balance! ");
-          }
+         if(!amount==''){
+           if(Bank_bal<0){
+           console.log("Insufficient Balance! ");
+           }
            else{}
              month--;
               currentBal = currentBal - monthlyPayment;
@@ -137,15 +138,25 @@ function payEmi(){
            console.log("You have enter wrong input");
            }
           }
+          else{
+            console.log("<~~~~~~~~{ Didn't have any loan }~~~~~~~~~>")
+          }
+        }
 
 function currentbal(){
-          console.log("Current balance:",currentBal);
+  if(!currentBal==''){
+          console.log("Current balance:     ",currentBal);
           }
-
+          else{
+            console.log("Current balance:     ",Bank_bal);
+          }
+        }
 function loanDetail(){
-          console.log("Total months left:",month);
-            console.log("Monthly Emi: ",monthlyPayment);
+  if(!month=='' || !monthlyPayment==''){
+          console.log("Total EMI pending:",month);
+            console.log("Monthly EMI: ",monthlyPayment);
           }
+        }
 
 console.log("Press 1 to create new Account:");
   console.log("Press 2 to deposit money:"); 
@@ -158,12 +169,20 @@ console.log("                              ");
 function userAcc(){
   console.log("<=={  User Details  }==>")
     console.log("Name:            ",name);
-      console.log("your Account no  ",accountNo);
+      console.log("Your Account no  ",accountNo);
         console.log("Email id:        ",id);
       console.log("Phone:           ",phone);
     console.log("Address:         ",address);
-  console.log("Pincode:         ",pincode);
+  console.log("Pin code:        ",pincode);
   }
+function defaultUser(){
+  console.log("Name:                 Amar kumar");
+  console.log("your Account no:     ",accountNo);
+  console.log("Email id:             amk@gmail.com");
+  console.log("Phone:                1234567890");
+  console.log("Address:              Mohali");
+  console.log("Pin code:             123456");
+}
 
 do{
       choice = prompt("Enter your choice (0 to Exit)=> ");
@@ -200,8 +219,9 @@ switch (choice)
       break;
 
   case '6':
+
+    if(!name==''){
       userAcc();
-        
         if(month<1 || monthlyPayment < 0){
           console.log("<~~~~~~~~~~{ Don't have any EMI }~~~~~~~~~>")
         }
@@ -209,8 +229,23 @@ switch (choice)
           currentbal();
           loanDetail();
         } 
+      }
+      else{
+        defaultUser();
+        currentbal();
+        if(month<1 || monthlyPayment < 0){
+          console.log("<~~~~~~~~~~{ Don't have any EMI }~~~~~~~~~>")
+        }
+        else{
+          
+          loanDetail();
+        } 
+
+      }
   break;
   
+ case '0':
+    break;
       default:
         console.log("Invalid input");
   }
