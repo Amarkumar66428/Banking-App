@@ -161,8 +161,8 @@ function Loan(){
             loanMon();
         }
     }
-    loanMon()
-    loanAm()
+    loanAm();
+    loanMon();
 
     amount = parseInt(amount);
     month = parseInt(month);
@@ -262,7 +262,6 @@ else{
 }
 
 do{
-  console.log("                              ");
     console.log("                              ");
        console.log("Press 1 to create new Account:");
          console.log("Press 2 to deposit money:"); 
