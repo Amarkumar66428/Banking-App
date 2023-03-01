@@ -11,9 +11,10 @@ let choice;
                            let currentBal = 0;  
                       let amount;
                   var interestRate;
-              var month;
+              let month = 0;
           var monthlyInterestRate;
       var monthlyPayment;
+  const DefaultAcc = 12345678;
                         
 var valid_n =  /^[0-9]+$/;
 
@@ -25,7 +26,11 @@ userId();
 userPhone();
 userAdd();
 userPin()
-
+currentBal = 0; 
+month = 0;
+monthlyInterestRate = 0 ;
+monthlyPayment = 0 ;
+Bank_bal = 0;
 }
 
 function userName(){
@@ -86,7 +91,7 @@ const accountNo = accountNumber;
 // -----------------------------------------------------------------Deposit-------------------------------------
 function deposit(){ 
 let Acc = prompt("Enter Account number: ");
-    if(Acc==accountNo){
+    if(Acc==accountNo || Acc == DefaultAcc){
         v_n(); 
         function v_n(){
       let b = prompt("Enter amount for deposit: ");
@@ -111,7 +116,7 @@ let Acc = prompt("Enter Account number: ");
 //-------------------------------------------------------------------withdraw-------------------------------------
 function withdraw(){ 
   let Acc = prompt("Enter Account number: "); 
-    if(Acc==accountNo){  
+  if(Acc==accountNo || Acc == DefaultAcc){  
     w_D();
 
     function w_D(){ 
@@ -144,29 +149,31 @@ function withdraw(){
 // -------------------------------------------------------------------loan---------------------------------------    
 function Loan(){
   let Acc = prompt("Enter Account number: ");
-  if(Acc==accountNo){
-    if(month == 0 ){
+  if(Acc==accountNo || Acc == DefaultAcc){
+    if(month==0){
+
     function loanAm(){
     amount = prompt("loan Amount: ");
-    if(!amount.match(valid_n)){ 
+      if(!amount.match(valid_n)){ 
         console.log("~~< Invalid amount >~~");
         loanAm();
-    }
+      }
     }
 
-        month = prompt("Durration of months: ");
-        function loanMon(){
+    function loanMon(){
+      month = prompt("Durration of months: ");
         if(!month.match(valid_n)){ 
             console.log("~~< Invalid month >~~");
             loanMon();
+          }
         }
-    }
+
     loanAm();
     loanMon();
 
     amount = parseInt(amount);
     month = parseInt(month);
-    interestRate = 15;
+      interestRate = 15;
         monthlyInterestRate = interestRate / 1500;
             monthlyPayment = (amount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -month));
             currentBal = currentBal + amount;
@@ -183,17 +190,16 @@ function Loan(){
     console.log("                              ");
     console.log("<~~~~~{ You have enter wrong input }~~~~~~~~>");
     console.log("                              ");
-  }
-  
+  } 
 }
 
 function world(){
-  console.log("current Balance:", currentBal);
+  console.log("current Balance: ", currentBal);
 }
-
+// -------------------------------------------------------------Pay EMI---------------------------
 function payEmi(){
   let Acc = prompt("Enter Account number: ");
-       if(Acc==accountNo){
+  if(Acc==accountNo || Acc == DefaultAcc){
          if(!amount==''){
            if(currentBal < monthlyPayment){
             console.log("                              ");
@@ -229,6 +235,8 @@ function currentbal(){
             console.log("Current balance:     ",Bank_bal);
           }
         }
+
+
 function loanDetail(){
   if(!month=='' || !monthlyPayment==''){
           console.log("Total EMI pending:   ",month);
@@ -239,25 +247,35 @@ function loanDetail(){
 function userAcc(){
   
   console.log("<~~{  User Details  }~~>")
-    console.log("Name:            ",name);
-      console.log("Your Account no  ",accountNo);
-        console.log("Email id:        ",id);
-      console.log("Phone:           ",phone);
-    console.log("Address:         ",address);
+  console.log("Name:            ",name);
+  console.log("Your Account no  ",accountNo);
+  console.log("Email id:        ",id);
+  console.log("Phone:           ",phone);
+  console.log("Address:         ",address);
   console.log("Pin code:        ",pincode);
   }
 
 
 function defaultUser(){
     Acc = prompt("Enter account number: ");
-    if(Acc==accountNo){
+    if(Acc==DefaultAcc){
     console.log("<~~{  default User Details  }~~>")
   console.log("Name:                 Amar kumar");
-  console.log("your Account no:     ",accountNo);
+  console.log("your Account no:     ",DefaultAcc);
   console.log("Email id:             amk@gmail.com");
   console.log("Phone:                1234567890");
   console.log("Address:              Mohali");
   console.log("Pin code:             123456");
+  currentbal();
+  if(month<1 || monthlyPayment < 0){
+      console.log("                              ");
+    console.log("[ Don't have any Loan ]");
+    console.log("                              ");
+  }
+  else{
+    
+    loanDetail();
+  } 
 }
 else{
     console.log("                              ");
@@ -267,16 +285,18 @@ else{
 }
 
 do{
-    console.log("                              ");
-       console.log("Press 1 to create new Account:");
-         console.log("Press 2 to deposit money:"); 
-          console.log("Press 3 to withdraw money:");
-        console.log("Press 4 to take load for car, home and education :");
-      console.log("Press 5 to pay Emi :");
-    console.log("Press 6 to See Acount details:")
-  console.log("                              "); 
-  
-console.log("~~Account number~~"   ,accountNo);
+    console.log(",_________________________________,");
+       console.log("| Press 1 to create new Account:  |");
+         console.log("| Press 2 to deposit money:       |"); 
+          console.log("| Press 3 to withdraw money:      |");
+        console.log("| Press 4 to take load :          |");
+      console.log("| Press 5 to pay Emi :            |");
+    console.log("| Press 6 to See Acount details:  |")
+  console.log("|_________________________________|"); 
+  console.log("                              ");
+if(name==''){
+console.log("[ Default Account number ]="   ,DefaultAcc);
+}
 choice = prompt("Enter your choice (0 to Exit)=> ");
 
 switch (choice)
@@ -303,20 +323,23 @@ switch (choice)
   break;
 
   case '5':
-    if(month<1 || monthlyPayment < 0){
+       if(month<1 || monthlyPayment < 0){
+        let Acc = prompt("Enter Account number: ");
+        if(Acc==accountNo || Acc == DefaultAcc){
         console.log("                              ");
-      console.log("<~~~~~~~~~~{ Not any pending EMI }~~~~~~~~~>");
-      console.log("                              ");
-    }
+         console.log("<~~~~~~~~~~{ Not any pending EMI }~~~~~~~~~>");
+           console.log("                              ");
+       }
+      }
     else{
       payEmi ();  
-    }  
+    } 
       break;
 
   case '6':
 
     if(!name==''){
-      Acc = prompt("Enter your account number: ");
+      let Acc = prompt("Enter your account number: ");
         if(Acc==accountNo){
          userAcc();
          currentbal();
@@ -329,20 +352,12 @@ switch (choice)
           loanDetail();
         } 
        }
+       else{
+        console.log("[ wrong Accont number ]")
+       }
       }
       else{
         defaultUser();
-        currentbal();
-        if(month<1 || monthlyPayment < 0){
-            console.log("                              ");
-          console.log("<~~~~~~~~~~{ Don't have any EMI }~~~~~~~~~>");
-          console.log("                              ");
-        }
-        else{
-          
-          loanDetail();
-        } 
-
       }
   break;
   
