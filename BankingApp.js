@@ -11,7 +11,7 @@ let choice;
                         let currentBal;
                     let amount;
                 var interestRate;
-            var month;
+            var month = 0;
         var monthlyInterestRate;
     var monthlyPayment; 
 var valid_n =  /^[0-9]+$/;
@@ -146,6 +146,7 @@ function withdraw(){
 function Loan(){
   let Acc = prompt("Enter Account number: ");
   if(Acc==accountNo){
+    if(month == 0 ){
     function loanAm(){
     amount = prompt("loan Amount: ");
     if(!amount.match(valid_n)){ 
@@ -176,8 +177,12 @@ function Loan(){
     
   }
   else{
+    console.log("<~~~~~~~~~~{ You have already pending EMIs. Can't take another loan }~~~~~~~~~~~~~~~~~>")
+  }
+}
+  else{
     console.log("                              ");
-    console.log("You have enter wrong input");
+    console.log("<~~~~~{ You have enter wrong input }~~~~~~~~>");
     console.log("                              ");
   }
   
@@ -193,7 +198,7 @@ function payEmi(){
          if(!amount==''){
            if(Bank_bal<0){
             console.log("                              ");
-           console.log("Insufficient Balance! ");
+           console.log("<~~~~~~~~~{ Insufficient Balance! }~~~~~~~~~~>");
            console.log("                              ");
            }
            else{}
