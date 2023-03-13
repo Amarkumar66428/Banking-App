@@ -2,6 +2,7 @@
 let prompt = require("prompt-sync")()
 
 console.log("<~~~~~~~~~~~~~~~~~~~~~~~~~{ Welcome to World Bank }~~~~~~~~~~~~~~~~~~~~~>")
+
 let dynamicArray = [];
 
 let choice;
@@ -13,7 +14,6 @@ let pincode;
 let month = 0;
 var monthlyPayment;
 var amount;
-let Accnumber;
 var validAcc = /^[0-9]{8}?$/;
 var valid_n =  /^[0-9]+$/;
 let Accno;
@@ -100,7 +100,7 @@ function AccountNumber() {
   
 //---------------------------------------------------------Deposit function----------------------------------------------
 function deposit(){;
-    Accno = prompt("Enter the Account number(0 to go back):");
+    Accno = prompt("Enter your Account number(0 to go back):");
     if(Accno==0){
       bankApp();
      }
@@ -230,7 +230,7 @@ switch (choice)
    break;
   case '6':
     let match=null;
-      Accno = prompt("Enter the Account number(0 to go back):");
+      Accno = prompt("Enter your Account number(0 to go back):");
     for (i = 0; i < dynamicArray.length; i++) {
       if (dynamicArray[i].accountNo === Accno) {
         match = dynamicArray[i];
