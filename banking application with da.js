@@ -116,7 +116,7 @@ function deposit(){;
 
 //--------------------------------------------------------------withdraw-------------------------------------------------
 function withdraw(){ 
-    let Accno = prompt("Enter the Account number(0 to go back):");
+    let Accno = prompt("Enter your Account number(0 to go back):");
     if(Accno==0){
       bankApp();
      }
@@ -132,7 +132,7 @@ function withdraw(){
   }
   // -----------------------------------------------------------loan----------------------------------------------------  
 function loan(){
-    let Accno = prompt("Enter the Account number(0 to go back):");
+    let Accno = prompt("Enter your Account number(0 to go back):");
     if(Accno==0){
       bankApp();
      }
@@ -140,7 +140,7 @@ function loan(){
      if(dynamicArray[i].accountNo === Accno){
 
       function loanAm(){
-        amount = prompt("loan Amount: ");
+        amount = prompt("Loan Amount: ");
           if(!amount.match(valid_n)){ 
             console.log("~~< Invalid amount >~~");
             loanAm();
@@ -159,7 +159,7 @@ function loan(){
             month = parseInt(month);
             interestRate = 15;
             monthlyInterestRate = interestRate / 1500;
-            monthlyPayment = (amount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -month));
+            monthlyPayment = amount * monthlyInterestRate * month;
             dynamicArray[i].CurrentBal += amount;
             dynamicArray[i].MonthlyPayment = monthlyPayment;
             dynamicArray[i].Emi_pending = month;
@@ -174,7 +174,7 @@ function loan(){
 // ---------------------------------------------------------Pay EMI------------------------------------------------------
 
 function payEmi(){
-  let Accno = prompt("Enter the Account number(0 to go back):");
+  let Accno = prompt("Enter your Account number(0 to go back):");
   if(Accno==0){
     bankApp();
    }
