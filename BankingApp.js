@@ -330,15 +330,15 @@ else{
 function bankApp(){
 do{
     console.log(",_________________________________,");
-       console.log("| Press 1 to create new Account:  |");
-         console.log("| Press 2 to deposit money:       |"); 
-          console.log("| Press 3 to withdraw money:      |");
-        console.log("| Press 4 to take load :          |");
-      console.log("| Press 5 to pay Emi :            |");
+    console.log("| Press 1 to create new Account:  |");
+    console.log("| Press 2 to deposit money:       |"); 
+    console.log("| Press 3 to withdraw money:      |");
+    console.log("| Press 4 to take load :          |");
+    console.log("| Press 5 to pay Emi :            |");
     console.log("| Press 6 to See Acount details:  |")
-  console.log("|_________________________________|"); 
-  console.log("                              ");
-console.log("[ Default Account number ]="   ,DefaultAcc);
+    console.log("|_________________________________|"); 
+    console.log("                                   ");
+    console.log("[ Default Account number ]="   ,DefaultAcc);
 
 choice = prompt("Enter your choice (# to Exit)=> ");
 
@@ -402,7 +402,7 @@ switch (choice)
         } 
        }
        else{
-        console.log("[ wrong Accont number ]")
+        console.log("<~~~~[ wrong Accont number ]~~~~~>")
        }
       }
       else{
@@ -419,8 +419,7 @@ switch (choice)
   }
 }while (choice !=='#');
 console.log("                              ");
-console.log("<~~~~~~~~~~~~~~~~~~~~~~~{ Thank you for kind visit to World bank }~~~~~~~~~~~~~~~~~~~~~~>")
+console.log("<~~~~~~~~~~~~~~~~~~~~~{ Thank you for kind visit to World bank }~~~~~~~~~~~~~~~~~~~~>")
 console.log("                              ");
 }
 bankApp();
-
